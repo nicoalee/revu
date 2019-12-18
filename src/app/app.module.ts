@@ -10,13 +10,15 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { HomeComponent } from './home/home.component';
 import { FooterComponent } from './footer/footer.component';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     HomeComponent,
-    FooterComponent
+    FooterComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -25,6 +27,9 @@ import { FooterComponent } from './footer/footer.component';
     MaterialsModule,
     NgbModule,
     FontAwesomeModule
+  ],
+  entryComponents: [
+    LoginComponent
   ],
   providers: [],
   bootstrap: [AppComponent]

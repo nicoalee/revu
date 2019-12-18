@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { faPenSquare, faSearch } from '@fortawesome/free-solid-svg-icons'
+import { MatDialog } from '@angular/material';
+import { LoginComponent } from '../login/login.component';
 
 @Component({
   selector: 'app-header',
@@ -12,9 +14,24 @@ export class HeaderComponent implements OnInit {
   private faPenSquare = faPenSquare
   private faSearch = faSearch
 
-  constructor() { }
+
+
+  constructor(private dialog: MatDialog) {
+    
+  }
 
   ngOnInit() {
+
+  }
+
+  openDialog(): void {
+    const dialogRef = this.dialog.open(LoginComponent, {
+      width: "40%",
+      data: {
+        test1: "testdata1",
+        test2: "testdata2"
+      }
+    })
   }
 
 }
