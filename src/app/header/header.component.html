@@ -9,16 +9,38 @@
 
     <div class="navbar-collapse" [class.collapse]="collapsed">
 
-      <form class="form-inline">
+      <ng-template #ss let-r="result" let-t="term">
+        <div (click)="onAddNewProperty()" *ngIf="r.flag; else showResults">
+          <span>{{r.message}}</span>
+        </div>
+        <ng-template #showResults>
+          <ngb-highlight [result]="r" [term]="t"></ngb-highlight>
+        </ng-template>
+      </ng-template>
+
+      <div class="form-inline">
           <div class="input-group">
-              <input type="search" class="form-control" style="width: 30vw;" placeholder="search for a property">
+
+            <!-- getting result and term from this input -->
+              <input 
+                type="text" 
+                [(ngModel)]="searchString" 
+                (keyup.enter)="onSearch(searchString)" 
+                [editable]="false" 
+                [ngbTypeahead]="search" 
+                class="form-control" 
+                style="width: 30vw;" 
+                placeholder="search for a property"
+                [inputFormatter]="formatter"
+                [resultTemplate]="ss">
+
               <div class="input-group-append">
-                  <button class="btn btn-success">
+                  <button (click)="onSearch(searchString)" class="btn btn-success">
                       <fa-icon [icon]="faSearch"></fa-icon>
                   </button>
               </div>
           </div>
-      </form>
+        </div>
        
         <ul class="navbar-nav ml-auto">
             <li class="nav-item ml">
